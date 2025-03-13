@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RestauranteMap.Login"
+             Title="Login">
+
+    <Grid RowDefinitions="Auto,*">
+        <!--Opciones de Login y SignIn -->
+        <Grid ColumnDefinitions="*,*"
+                  Padding="10"
+                  RowSpacing="0">
+            <Label Text="Login"
+                       x:Name="LoginLabel"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontSize="18"
+                       TextColor="Blue"
+                       Grid.Column="0"
+                       Padding="10">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="LoginTappedCommand" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Text="SignIn"
+                       x:Name="SignInLabel"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontSize="18"
+                       TextColor="Gray"
+                       Grid.Column="1"
+                       Padding="10">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="SignInTappedCommand" />
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+
+        <!-- Formularios de Login y SignIn -->
+        <Grid Grid.Row="1"
+                  Padding="20">
+            <!-- Formulario de Login -->
+            <StackLayout x:Name="LoginForm"
+                             VerticalOptions="Center">
+                <Entry Placeholder="Correo electrónico"
+                           x:Name="LoginEmail"
+                           Keyboard="Email" />
+                <Entry Placeholder="Contraseña"
+                           x:Name="LoginPassword"
+                           IsPassword="True" />
+                <Grid HorizontalOptions="End" ColumnDefinitions="7*, 3*">
+                    <Switch Grid.Column="1"
+                            x:Name="ShowPasswordSwitch"
+                            Toggled="OnShowPasswordToggled"
+                            HorizontalOptions="End"
+                            VerticalOptions="End" />
+                    <Label Grid.Column="0"
+                           Text="Mostrar contraseña"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Grid>
+                <Button Text="Iniciar Sesión" Margin="50, 0" Clicked="LoginButtonClicked"/>
+            </StackLayout>
+
+            <!-- Formulario de SignIn -->
+            <StackLayout x:Name="SignInForm"
+                             IsVisible="False"
+                             VerticalOptions="Center">
+                <Entry x:Name="signinName" Placeholder="Nombre" />
+                <Entry x:Name="signinEmail" Placeholder="Correo electrónico"
+                           Keyboard="Email" />
+                <Entry x:Name="signinCity" Placeholder="Ciudad" />
+                <Entry x:Name="signinPhone" Placeholder="Teléfono"
+                       Keyboard="Telephone" />
+                <Entry x:Name="signinAddress" Placeholder="Dirección" />
+                <Entry x:Name="signinPassword" Placeholder="Contraseña"
+                           IsPassword="True" />
+
+                <Button Text="Registrar" Margin="50, 0" Clicked="SignupButtonClicked"/>
+            </StackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>

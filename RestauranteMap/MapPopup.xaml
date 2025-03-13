@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+              xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+              x:Class="RestauranteMap.MapPopup"
+              x:Name="mapPopup">
+
+    <VerticalStackLayout HeightRequest="500" Padding="20">
+        <maps:Map x:Name="MyMap" MapClicked="OnMapClicked" HeightRequest="400">
+        </maps:Map>
+
+
+        <Button Text="Aceptar" Clicked="OnAcceptClicked" CornerRadius="0"/>
+    </VerticalStackLayout>
+</mopups:PopupPage>

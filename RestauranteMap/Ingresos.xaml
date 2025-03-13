@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RestauranteMap.Ingresos">
+
+    <StackLayout Padding="10">
+        <Grid ColumnDefinitions="Auto,*">
+            <Label Text="Rango:" VerticalTextAlignment="Center" FontAttributes="Bold" />
+            <Picker Title="Seleccione un filtro"
+                    ItemsSource="{Binding Filters}"
+                    SelectedItem="{Binding SelectedFilter}"
+                    Grid.Column="1" />
+        </Grid>
+
+        <CollectionView ItemsSource="{Binding FilteredOrders}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="5" BorderColor="LightGray" CornerRadius="10">
+                        <Grid ColumnDefinitions="7*,3*">
+                            <StackLayout Grid.Column="0">
+                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="16" />
+                                <Label Text="{Binding Direccion}" FontSize="14" TextColor="Gray" />
+                                <Label Text="{Binding Fecha, StringFormat='{0:dd/MM/yyyy}'}" FontSize="14" TextColor="Blue" />
+                            </StackLayout>
+
+                            <Label Grid.Column="1" Text="{Binding Phone, StringFormat='${0:N2}'}" 
+                               FontSize="16" TextColor="Green" HorizontalOptions="End" VerticalOptions="Center"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label Text="{Binding Total, StringFormat='Total: {0:C}'}"
+               FontSize="16" FontAttributes="Bold" VerticalOptions="End" HorizontalTextAlignment="End" Margin="0,10,0,0" />
+    </StackLayout>
+</ContentView>

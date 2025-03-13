@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RestauranteMap.Cocina"
+             Title="Cocina">
+
+    <Grid
+    RowDefinitions="9.3*, 0.7*">
+
+        <ScrollView Grid.Row="0">
+            <Grid
+                RowDefinitions="110, *">
+                <Image
+                    IsVisible="False"
+                    Grid.Row="0"
+                    Source="edificios.jpg" Aspect="AspectFill">
+
+                </Image>
+                
+                <CollectionView
+                    Margin="10,0"
+                    x:Name="carouselView2"
+                    Grid.Row="0"
+                    ItemsSource="{Binding CarouselOrders}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"/>
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="Transparent" Padding="5" CornerRadius="15" BackgroundColor="{Binding ., Converter={StaticResource TimeToColorConverter}}" HeightRequest="85" WidthRequest="140">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="selectPlatosListTapped" CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+
+                                <Label Text="{Binding Name}" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <BoxView Grid.Row="0" VerticalOptions="End" HeightRequest="0.5" Opacity="0.3" />
+
+                <Grid Grid.Row="1" RowDefinitions="140, *, 40" Padding="10,0,15,15">
+                    <CollectionView
+                        Grid.Row="0"
+                        ItemsSource="{Binding platosList}">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Horizontal" Span="1" HorizontalItemSpacing="8" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame
+                                    Padding="0"
+                                    BorderColor="Transparent"
+                                    CornerRadius="12"
+                                    WidthRequest="140"
+                                    HeightRequest="85"
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="Fill">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="selectPlatoTapped" CommandParameter="{Binding .}"/>
+                                    </Frame.GestureRecognizers>
+
+                                    <Grid>
+                                        <Image
+                                            Source="{Binding Image}"
+                                            Aspect="Fill"/>
+
+                                        <Frame Margin="0,0,3,3" HorizontalOptions="End" VerticalOptions="End" HeightRequest="24" WidthRequest="24" CornerRadius="24" BorderColor="Transparent" BackgroundColor="Grey" Opacity="0.8" Padding="0">
+                                            <Label Text="{Binding Quantity}" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        </Frame>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <StackLayout Grid.Row="1" Padding="10,0">
+                        <Label x:Name="animatedLabel"
+                               Text="comentario del usuario sobre su pedido"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               TextColor="#000000"
+                               FontSize="14" />
+
+                        <Label Text="{Binding plato.Nombre}" TextColor="#000000" FontSize="24" FontAttributes="Bold" Margin="0,15"/>
+
+                        <Grid ColumnDefinitions="auto,*">
+                            <Label Grid.Column="0" Text="Cantidad: " TextColor="#000000" FontSize="18" FontAttributes="Bold"/>
+                            <Label Grid.Column="1" Text="{Binding plato.Quantity}" TextColor="Green" FontSize="18" FontAttributes="Bold"/>
+                        </Grid>
+
+                        <Label Text="Descripción:" TextColor="#000000" FontSize="18" FontAttributes="Bold" Margin="0,8,0,4"/>
+                        <Label Text="{Binding plato.Descripcion}" TextColor="#000000" FontSize="16"/>
+                    </StackLayout>
+
+                    <Image Grid.Row="2" Source="recipe.png" VerticalOptions="End" HorizontalOptions="End">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="MostrarReceta"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Grid>
+        </ScrollView>
+
+        <Grid
+            Grid.Row="1"
+            BackgroundColor="Transparent">
+            <Button Margin="5,0,5,5" Text="Orden Terminada" IsEnabled="{Binding IsEmpty}" Clicked="sendOrder_Clicked">
+
+            </Button>
+        </Grid>
+
+        <Grid x:Name="PopupReceta" Grid.RowSpan="2" IsVisible="False">
+            <Grid BackgroundColor="Black" Opacity="0.5">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CerrarPopup"/>
+                </Grid.GestureRecognizers>
+            </Grid>
+
+            <Grid Margin="25,55" Background="White" Padding="35,10">
+                <StackLayout>
+                    <Label Text="{Binding plato.Receta.Nombre}" 
+                   FontAttributes="Bold" 
+                   FontSize="20" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Center" 
+                   TextColor="Black"
+                   Margin="0,15"/>
+
+                    <Label Text="Ingredientes" 
+                            FontAttributes="Bold" 
+                            FontSize="16" 
+                            HorizontalOptions="Start" 
+                            VerticalOptions="Center" 
+                            TextColor="Black"
+                            Margin="0,0,0,10"/>
+                    <CollectionView ItemsSource="{Binding plato.Receta.Ingredientes}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="35, 100, 30, 30, Auto">
+                                    <Label Grid.Column="0" Text="{Binding Numero}" TextColor="Black" FontAttributes="Bold"/>
+                                    <Label Grid.Column="1" Text="{Binding Nombre}" TextColor="Black" />
+                                    
+                                    <Label Grid.Column="2" Text="{Binding Unidad}" TextColor="Black" />
+                                    <Label Grid.Column="3" Text="{Binding Cantidad}" TextColor="Black" />
+                                    <Label Grid.Column="4" Text="{Binding Apuntes}" TextColor="Gray" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <StackLayout x:Name="DynamicContent" Margin="0,10,0,0"/>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

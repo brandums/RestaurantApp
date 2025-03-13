@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "709665354799",
+    "project_id": "restaurantemaps-1a166",
+    "storage_bucket": "restaurantemaps-1a166.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:709665354799:android:627f82282dd2db2c4ec2da",
+        "android_client_info": {
+          "package_name": "com.example.restauranemap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAuEav8aPmHnC3__2SPu8d18N7yL7u74Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

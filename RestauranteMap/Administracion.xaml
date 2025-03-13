@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RestauranteMap.Administracion"
+             Title="Administracion">
+
+    <Grid>
+        <Grid RowDefinitions="0.5*,9.5*">
+            <ScrollView Grid.Row="0" Orientation="Horizontal">
+                <Grid ColumnDefinitions="auto,auto,auto,auto,auto,auto,auto,auto,auto" ColumnSpacing="15" BackgroundColor="Grey" Padding="10">
+                    <Label Grid.Column="0" x:Name="Pedidos" Text="Pedidos" VerticalOptions="Center" TextColor="Blue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLabelTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Column="1" x:Name="cocina" Text="Cocina" VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLabelTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Column="2" x:Name="personal" Text="Personal" VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLabelTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Column="3" x:Name="clientes" Text="Clientes" VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLabelTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Column="4" x:Name="almacen" Text="Almacen" VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLabelTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Column="5" x:Name="ingresos" Text="Ingresos" VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLabelTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Column="6" x:Name="egresos" Text="Egresos" VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLabelTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Column="7" x:Name="platos" Text="Platos" VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLabelTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Column="8" x:Name="categorias" Text="Categorias" VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLabelTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </ScrollView>
+
+            <Grid x:Name="ContentContainer" Grid.Row="1">
+
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

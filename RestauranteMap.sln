@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34916.146
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestauranteMap", "RestauranteMap\RestauranteMap.csproj", "{F536B645-0C09-4716-8E42-4957371E822F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F536B645-0C09-4716-8E42-4957371E822F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F536B645-0C09-4716-8E42-4957371E822F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F536B645-0C09-4716-8E42-4957371E822F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F536B645-0C09-4716-8E42-4957371E822F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F536B645-0C09-4716-8E42-4957371E822F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F536B645-0C09-4716-8E42-4957371E822F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5BB3A41C-03DD-435D-B36D-9C09059DC3A2}
+	EndGlobalSection
+EndGlobal

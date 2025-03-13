@@ -1,0 +1,920 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RestauranteMap.MainPage">
+
+    <Grid
+    x:Name="PrincipalContainer">
+        <Image 
+        Aspect="AspectFill"
+        Source="background.jpg"/>
+
+        <!--vista completa de los Shops-->
+        <Grid
+        x:Name="ViewMoreShops"
+        ZIndex="10"
+        IsVisible="False"
+        ColumnDefinitions="2*,8*,2*"
+        RowDefinitions="1*,9*">
+
+            <Image
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="3"
+            Aspect="AspectFill"
+            Source="background.jpg"/>
+
+            <Grid
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="3"
+            BackgroundColor="Black"
+            Opacity="0.4"/>
+
+            <Grid
+            Grid.Row="0"
+            Grid.ColumnSpan="3"
+            Padding="10,0"
+            ColumnSpacing="15"
+            ColumnDefinitions="auto,*">
+                <Label
+                Grid.Column="0"
+                FontFamily="Segoe MDL2 Assets" 
+                Text="&#xE0A6;"
+                TextColor="White"
+                VerticalOptions="Center"
+                Margin="20,0,0,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="CloseViewMoreShopsTapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label
+                Grid.Column="1"
+                Text="Shops"
+                TextColor="White"
+                VerticalOptions="Center"
+                FontSize="20"
+                FontAttributes="Bold">
+
+                </Label>
+            </Grid>
+
+            <CollectionView
+            Grid.Row="1"
+            Grid.Column="1"
+            x:Name="ShopCollectionView2"
+            IsVisible="False"
+            ItemsSource="{Binding categories}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout x:Name="ColumnShopCollection" Orientation="Vertical" Span="2" HorizontalItemSpacing="20" VerticalItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                        Padding="0"
+                        BorderColor="Transparent"
+                        CornerRadius="12"
+                        MinimumHeightRequest="230"
+                        MaximumHeightRequest="250"
+                        MaximumWidthRequest="500"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill">
+                            <Image
+                            Source="{Binding Logo}"
+                            Aspect="Fill"/>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <CollectionView
+            Grid.Row="1"
+            Grid.Column="1"
+            x:Name="ShopCollectionView"
+            IsVisible="True"
+            ItemsSource="{Binding categories}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="1" VerticalItemSpacing="25" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                        Padding="0"                            
+                        BorderColor="Transparent"
+                        CornerRadius="12"
+                        HeightRequest="170"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill">
+                            <Image
+                            Source="{Binding Logo}"
+                            Aspect="AspectFill"/>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+        <!--vista completa de los Popular Shops-->
+        <Grid
+        x:Name="ViewMorePopularShops"
+        ZIndex="10"
+        IsVisible="False"
+        ColumnDefinitions="1*,8*,1*"
+        RowDefinitions="1*,9*">
+
+            <Image
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="3"
+            Aspect="AspectFill"
+            Source="background.jpg"/>
+
+            <Grid
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="3"
+            BackgroundColor="Black"
+            Opacity="0.4"/>
+
+            <Grid
+            Grid.Row="0"
+            Grid.ColumnSpan="3"
+            Padding="10,0"
+            ColumnSpacing="15"
+            ColumnDefinitions="auto,*">
+                <Label
+                Grid.Column="0"
+                FontFamily="Segoe MDL2 Assets" 
+                Text="&#xE0A6;"
+                TextColor="White"
+                VerticalOptions="Center"
+                Margin="20,0,0,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="CloseViewMorePopularShopsTapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label
+                Grid.Column="1"
+                Text="Popular Shops"
+                TextColor="White"
+                VerticalOptions="Center"
+                FontSize="20"
+                FontAttributes="Bold">
+
+                </Label>
+            </Grid>
+
+            <CollectionView
+            Grid.Row="1"
+            Grid.Column="1"
+            ItemsSource="{Binding specialFoods}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout x:Name="ProductsCardViewMore" Orientation="Vertical" Span="1" HorizontalItemSpacing="20" VerticalItemSpacing="20" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                        Margin="0,0,0,10"
+                        ColumnDefinitions="5*,5*"
+                        HeightRequest="130"
+                        MaximumWidthRequest="500">
+
+                            <Frame
+                            Grid.ColumnSpan="2"
+                            CornerRadius="12"
+                            BorderColor="Transparent"
+                            BackgroundColor="#434443"
+                            Opacity="0.9"/>
+
+                            <Grid
+                            Grid.Column="0"
+                            Padding="20,15"
+                            VerticalOptions="Center"
+                            RowDefinitions="3*,2.5*,4.5*">
+
+                                <Label
+                                Grid.Row="0"
+                                FontAttributes="Bold"
+                                FontSize="21"
+                                TextColor="White"
+                                Text="{Binding Nombre}"/>
+
+                                <Grid
+                                Grid.Row="1"
+                                ColumnDefinitions="14,*"
+                                ColumnSpacing="3">
+
+                                    <Label
+                                    Grid.Column="0"
+                                    FontSize="14"
+                                    VerticalOptions="Center"
+                                    TextColor="White"
+                                    Text="Bs."/>
+
+                                    <Label
+                                    Grid.Column="1"
+                                    FontSize="14"
+                                    TextColor="White"
+                                    Text="{Binding Precio}"/>
+                                </Grid>
+
+                                <Label
+                                Grid.Row="2"
+                                FontAttributes="Bold"
+                                FontSize="11"
+                                TextColor="White"
+                                Text="{Binding Descripcion}"/>
+                            </Grid>
+
+                            <Grid
+                            Grid.Column="1"
+                            MaximumWidthRequest="250"
+                            Padding="20,15">
+
+                                <Frame
+                                Padding="0"
+                                BorderColor="Transparent"
+                                CornerRadius="12"
+                                HasShadow="True">
+                                    <Image
+                                    Source="{Binding Image}"
+                                    Aspect="AspectFill"/>
+                                </Frame>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+
+        <StackLayout 
+        x:Name="GridDescription"
+        BackgroundColor="Black"
+        VerticalOptions="End"
+        HeightRequest="200"
+        Padding="30"
+        Spacing="15">
+            <Label
+            Grid.Row="0"
+            FontSize="35"
+            FontAttributes="Bold"
+            TextColor="White"
+            Text="Good Coffee, Good Food, Good Vibes, Good Days."/>
+
+            <Label
+            Grid.Row="1"
+            FontSize="16"
+            TextColor="White"
+            Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."/>
+        </StackLayout>
+
+        <Grid
+        x:Name="PrincipalPageContainer"
+        Opacity="0"
+        Padding="20, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.8*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="8.2*"/>
+            </Grid.RowDefinitions>
+
+            <Grid
+            Grid.Row="0"
+            x:Name="userInfo"
+            VerticalOptions="Center"
+            ColumnDefinitions="8.5*,1.5*">
+
+                <Grid
+                Grid.Column="0"
+                VerticalOptions="Center"
+                RowDefinitions="4*,5*">
+
+                    <Label
+                    Grid.Row="0"
+                    FontSize="14"
+                    TextColor="White"
+                    Text="Buenos dias"/>
+
+                    <Label
+                        x:Name="userName"
+                        Grid.Row="1"
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        TextColor="White"
+                        Text="Ruanrtz Frei"/>
+                </Grid>
+
+                <Grid
+                Grid.Column="1"
+                VerticalOptions="Center"
+                ColumnSpacing="10"
+                ColumnDefinitions="5*, 5*">
+
+                    <Frame
+                    x:Name="UserImage"
+                    IsVisible="False"
+                    Grid.Row="0"
+                    WidthRequest="40"
+                    HeightRequest="40"
+                    CornerRadius="40"
+                    Padding="0">
+                        <Image
+                        Margin="0"
+                        Aspect="Fill"
+                        Source="edificios.jpg"/>
+                    </Frame>
+
+                    <Image
+                    Grid.Column="1"
+                    Margin="0"
+                    MaximumHeightRequest="30"
+                    HorizontalOptions="End"
+                    Source="dotmenu.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMenuIconTapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Grid>
+
+            <Grid
+                Grid.Row="1"
+                x:Name="search"
+                VerticalOptions="Center"
+                ColumnSpacing="8"
+                ColumnDefinitions="8.5*, 1.5*">
+
+                <Grid
+                    Grid.Column="0">
+                    <Frame
+                        Opacity="0.8"
+                        CornerRadius="12"
+                        BackgroundColor="#434443"
+                        BorderColor="Transparent"
+                        />
+
+                    <Grid
+                        VerticalOptions="Start"
+                        HorizontalOptions="FillAndExpand"
+                        Padding="12, 3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image
+                            Source="search.png"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start"
+                            WidthRequest="20"
+                            HeightRequest="20"
+                            Margin="0,0,10,0" />
+
+                        <Entry
+                            BackgroundColor="Transparent"
+                            Grid.Column="1"
+                            Placeholder="Buscar producto"
+                            VerticalOptions="Center"
+                            TextColor="Black"
+                            FontSize="16"
+                            HeightRequest="40"
+                            Margin="0,0,0,0" />
+                    </Grid>
+                </Grid>
+
+                <Button
+                    Grid.Column="1"
+                    HeightRequest="30"
+                    Padding="0"
+                    Background="Transparent"
+                    ImageSource="reserve.png"
+                    Clicked="redirectReserve">
+                </Button>
+            </Grid>
+
+            <Grid
+            Grid.Row="2"
+            x:Name="ProductsContainer"
+            RowDefinitions="1.6*, 3.5*, 4.9*"
+            ColumnDefinitions="10*, 0*">
+
+                <Grid
+                Grid.Row="0"
+                x:Name="shops"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                RowDefinitions="0*,0*,10*">
+
+                    <Label
+                    x:Name="shopsTitle"
+                    Grid.Row="0"
+                    IsVisible="False"
+                    VerticalTextAlignment="Center"
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    TextColor="White"
+                    Text="Tiendas"/>
+
+                    <Label
+                    Grid.Row="0"
+                    HorizontalOptions="End"
+                    VerticalTextAlignment="End"
+                    FontSize="18"
+                    TextColor="White"
+                    Opacity="0.6"
+                    Text="See all">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SeeMoreShopsTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Grid
+                    Grid.Row="1"
+                    x:Name="shopsSearch"
+                    IsVisible="False"
+                    MaximumHeightRequest="35"
+                    VerticalOptions="Center">
+
+                        <Frame
+                        Opacity="0.8"
+                        CornerRadius="12"
+                        BackgroundColor="#434443"
+                        BorderColor="Transparent"/>
+
+                        <Grid
+                        VerticalOptions="Start"
+                        HorizontalOptions="FillAndExpand"
+                        Padding="12, 3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image
+                            Source="search.png"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start"
+                            WidthRequest="20"
+                            HeightRequest="20"
+                            Margin="0,0,10,0" />
+
+                            <Entry
+                            BackgroundColor="Transparent"
+                            Grid.Column="1"
+                            Placeholder="Search services"
+                            VerticalOptions="Center"
+                            TextColor="Black"
+                            FontSize="16"
+                            HeightRequest="40"
+                            Margin="0,0,0,0" />
+                        </Grid>
+                    </Grid>
+
+                    <CollectionView
+                    Grid.Row="2"
+                    x:Name="ShopCollection2"
+                    IsVisible="False"
+                    ItemsSource="{Binding categories}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame
+                                Padding="0"
+                                BorderColor="Transparent"
+                                CornerRadius="12"
+                                HeightRequest="240"
+                                WidthRequest="420"
+                                HasShadow="True">
+                                    <Image
+                                    Source="{Binding Logo}"
+                                    Aspect="Fill"/>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <CollectionView
+                    Grid.Row="2"
+                    x:Name="CategoriesList"
+                    ItemsSource="{Binding categories}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame
+                                Padding="0"
+                                BorderColor="Transparent"
+                                CornerRadius="12"
+                                HeightRequest="50"
+                                WidthRequest="95"
+                                HasShadow="True">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="filterCategory" CommandParameter="{Binding .}"/>
+                                    </Frame.GestureRecognizers>
+
+                                    <Grid Padding="0" Margin="-1">
+                                        <Image
+                                            Source="{Binding Logo}"
+                                            Aspect="AspectFill"/>
+
+                                        <Grid
+                                            BackgroundColor="Grey" HeightRequest="15" Opacity="0.6" VerticalOptions="End" HorizontalOptions="FillAndExpand">
+                                            
+                                        </Grid>
+                                        <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="13" TextColor="White" HorizontalOptions="Center" VerticalOptions="End"/>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+
+                <Grid
+                Grid.Row="1"
+                x:Name="TopProducts"
+                RowDefinitions="1.5*,9.5*">
+
+                    <Grid
+                    x:Name="TopProductsColumns"
+                    ColumnDefinitions="7*, 0*, 3*"
+                    VerticalOptions="Center">
+
+                        <Label
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        FontSize="24"
+                        TextColor="White"
+                        Text="Platos populares"/>
+
+                        <Grid
+                        Grid.Column="1"
+                        x:Name="TopProductsSearch"
+                        IsVisible="False"
+                        MaximumHeightRequest="35"
+                        VerticalOptions="Center">
+
+                            <Frame
+                            Opacity="0.8"
+                            CornerRadius="12"
+                            BackgroundColor="#434443"
+                            BorderColor="Transparent"/>
+
+                            <Grid
+                            VerticalOptions="Start"
+                            HorizontalOptions="FillAndExpand"
+                            Padding="12, 3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Image
+                                Source="search.png"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Start"
+                                WidthRequest="20"
+                                HeightRequest="20"
+                                Margin="0,0,10,0" />
+
+                                <Entry
+                                BackgroundColor="Transparent"
+                                Grid.Column="1"
+                                Placeholder="Burscar producto"
+                                VerticalOptions="Center"
+                                TextColor="Black"
+                                FontSize="16"
+                                HeightRequest="40"
+                                Margin="0,0,0,0" />
+                            </Grid>
+                        </Grid>
+
+                        <Label
+                        Grid.Column="2"
+                        HorizontalTextAlignment="End"
+                        VerticalTextAlignment="End"
+                        FontSize="18"
+                        TextColor="White"
+                        Opacity="0.6"
+                        Text="See all"/>
+                    </Grid>
+
+                    <Grid
+                    Grid.Row="1"
+                    Padding="0,5,0,0">
+
+                        <CollectionView
+                            ItemsSource="{Binding shopsList}">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid
+                                    WidthRequest="120"
+                                    HeightRequest="160">
+
+                                        <Frame
+                                        Padding="0"
+                                        BorderColor="Transparent"
+                                        CornerRadius="17">
+                                            <Image
+                                            Source="{Binding Image}"
+                                            Aspect="Fill"
+                                                Margin="-1">
+                                                
+                                            </Image>
+                                        </Frame>
+
+                                        <Grid
+                                        Padding="9, 5"
+                                        RowDefinitions="2*,5*,1*,2*">
+
+                                            <Frame
+                                            Grid.Row="0"
+                                            HorizontalOptions="End"
+                                            WidthRequest="35"
+                                            HeightRequest="20"
+                                            BackgroundColor="Gray"
+                                            Opacity="0.9"
+                                            BorderColor="Transparent"/>
+                                            <Grid
+                                            Grid.Row="0"
+                                            HeightRequest="20"
+                                            WidthRequest="35"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center"
+                                            ColumnDefinitions="5*,5*"
+                                            ColumnSpacing="1"
+                                            Padding="3,0">
+
+                                                <Label
+                                                Grid.Column="0"
+                                                VerticalTextAlignment="Center"
+                                                FontAttributes="Bold"
+                                                TextColor="White"
+                                                FontSize="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.TextSize2}"
+                                                Text="Bs."/>
+
+                                                <Label
+                                                Grid.Column="1"
+                                                VerticalTextAlignment="Center"
+                                                FontAttributes="Bold"
+                                                FontSize="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.TextSize2}"
+                                                TextColor="White"
+                                                Text="{Binding Precio}"/>
+                                            </Grid>
+
+                                            <Label
+                                            Grid.Row="2"
+                                            VerticalOptions="Center"
+                                            FontSize="13"
+                                            TextColor="White"
+                                            Text="{Binding Categoria}"/>
+
+                                            <Label
+                                            Grid.Row="3"
+                                            VerticalOptions="Start"
+                                            FontAttributes="Bold"
+                                            FontSize="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.TextSize1}"
+                                            TextColor="White"
+                                            Text="{Binding Nombre}">
+                                                
+                                            </Label>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                </Grid>
+
+                <Grid
+                Grid.Row="2"
+                x:Name="ProductsView"
+                RowDefinitions="1.5*,9.5*">
+
+                    <Grid
+                    x:Name="ProductsViewColums"
+                    ColumnDefinitions="7*, 0*, 3*"
+                    VerticalOptions="Center">
+
+                        <Label
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        FontSize="24"
+                        TextColor="White"
+                        Text="Platos especiales"/>
+
+                        <Grid
+                        Grid.Column="1"
+                        x:Name="ProductsViewSearch"
+                        IsVisible="False"
+                        MaximumHeightRequest="35"
+                        VerticalOptions="Center">
+
+                            <Frame
+                            Opacity="0.8"
+                            CornerRadius="12"
+                            BackgroundColor="#434443"
+                            BorderColor="Transparent"/>
+
+                            <Grid
+                            VerticalOptions="Start"
+                            HorizontalOptions="FillAndExpand"
+                            Padding="12, 3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Image
+                                Source="search.png"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Start"
+                                WidthRequest="20"
+                                HeightRequest="20"
+                                Margin="0,0,10,0" />
+
+                                <Entry
+                                BackgroundColor="Transparent"
+                                Grid.Column="1"
+                                Placeholder="Buscar producto"
+                                VerticalOptions="Center"
+                                TextColor="Black"
+                                FontSize="16"
+                                HeightRequest="40"
+                                Margin="0,0,0,0" />
+                            </Grid>
+                        </Grid>
+
+                        <Label
+                        Grid.Column="2"
+                        HorizontalTextAlignment="End"
+                        VerticalTextAlignment="End"
+                        FontSize="18"
+                        TextColor="White"
+                        Opacity="0.6"
+                        Text="See all">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="SeeMorePopularShopsTapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+
+                    <Grid
+                    Grid.Row="1"
+                    Padding="0,5,0,0">
+
+                        <CollectionView
+                        ItemsSource="{Binding specialFoods}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout x:Name="ProductsCard" Orientation="Vertical" Span="1" HorizontalItemSpacing="10" VerticalItemSpacing="10" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid
+                                    Margin="0,0,0,10"
+                                    ColumnDefinitions="5*,5*"
+                                    HeightRequest="130">
+
+                                        <Frame
+                                        Grid.ColumnSpan="2"
+                                        CornerRadius="12"
+                                        BorderColor="Transparent"
+                                        BackgroundColor="#434443"
+                                        Opacity="0.9"/>
+
+                                        <Grid
+                                        Grid.Column="0"
+                                        Padding="20,15"
+                                        VerticalOptions="Center"
+                                        RowDefinitions="3*,2.5*,4.5*">
+
+                                            <Label
+                                            Grid.Row="0"
+                                            FontAttributes="Bold"
+                                            FontSize="22"
+                                            TextColor="White"
+                                            Text="{Binding Nombre}">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnLabelTapped" CommandParameter="{Binding .}"/>
+                                                </Label.GestureRecognizers>
+                                            </Label>
+
+                                            <Grid
+                                            Grid.Row="1"
+                                            ColumnDefinitions="14,*"
+                                            ColumnSpacing="3">
+
+                                                <Label
+                                                Grid.Column="0"
+                                                FontSize="14"
+                                                TextColor="White"
+                                                VerticalOptions="Center"
+                                                Text="Bs."/>
+
+                                                <Label
+                                                Grid.Column="1"
+                                                FontSize="14"
+                                                TextColor="White"
+                                                Text="{Binding Precio}"/>
+                                            </Grid>
+
+                                            <Label
+                                            Grid.Row="2"
+                                            FontAttributes="Bold"
+                                            FontSize="11"
+                                            TextColor="White"
+                                            Text="{Binding Descripcion}"/>
+                                        </Grid>
+
+                                        <Grid
+                                        Grid.Column="1"
+                                        MaximumWidthRequest="250"
+                                        Padding="20,15">
+
+                                            <Frame
+                                            Padding="0"
+                                            BorderColor="Transparent"
+                                            CornerRadius="12"
+                                            HasShadow="True">
+                                                <Image
+                                                    Source="{Binding Image}"
+                                                    Aspect="AspectFill"
+                                                    Margin="-1">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="OnImageTapped" CommandParameter="{Binding .}"/>
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                            </Frame>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid
+        x:Name="Menu"
+        IsVisible="False"
+        ColumnDefinitions="2*,8*">
+
+            <Grid
+            Grid.Column="0"
+            Background="Black"
+            Opacity="0.5">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnMenuBackgroundTapped"/>
+                </Grid.GestureRecognizers>
+            </Grid>
+
+            <Grid
+            Grid.Column="1"
+            Background="White">
+
+                <StackLayout Padding="20" Spacing="15">
+                    <Label FontSize="20" TextColor="Black" Text="Pedidos">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMenuItemTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label FontSize="20" TextColor="Black" Text="Lista de Pedidos">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMenuItemTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label FontSize="20" TextColor="Black" Text="Cocina">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMenuItemTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label FontSize="20" TextColor="Black" Text="Administracion">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMenuItemTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label FontSize="20" TextColor="Black" Text="Configuración">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMenuItemTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label x:Name="Login" FontSize="20" TextColor="Black" Text="Login">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMenuItemTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label x:Name="Logout" IsVisible="False" FontSize="20" TextColor="Black" Text="Logout">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMenuItemTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

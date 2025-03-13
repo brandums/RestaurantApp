@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RestauranteMap.DetallesPedidoPage"
+             Title="DetallesPedidoPage">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="30">
+            <Image Source="dotnet_bot.png" HeightRequest="150" HorizontalOptions="Center" />
+
+            <StackLayout Orientation="Horizontal" Spacing="15">
+                <Label Text="Nombre del Cliente:" FontSize="16" FontAttributes="Bold" />
+                <Label Text="{Binding Orden.Name}" FontSize="16" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Spacing="15">
+                <Label Text="Carnet o NIT:" FontSize="16" FontAttributes="Bold" />
+                <Label Text="{Binding Orden.Nit}" FontSize="16" />
+            </StackLayout>            
+
+            <CollectionView ItemsSource="{Binding Orden.Platos}">
+                <CollectionView.Header>
+                    <Grid ColumnDefinitions="3*,*,*" Padding="5">
+                        <Label Text="Nombre" FontAttributes="Bold" />
+                        <Label Text="Cantidad" FontAttributes="Bold" Grid.Column="1" />
+                        <Label Text="Precio" FontAttributes="Bold" Grid.Column="2" />
+                    </Grid>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="3*,*,*" Padding="5">
+                            <Label Text="{Binding Nombre}" />
+                            <Label Text="{Binding Quantity}" Grid.Column="1" />
+                            <Label Text="{Binding Total, StringFormat='{}{0:C}'}" Grid.Column="2" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <StackLayout Orientation="Horizontal" Spacing="20" HorizontalOptions="End">
+                <Label Text="Monto Total:" FontSize="18" FontAttributes="Bold" />
+                <Label Text="{Binding MontoTotal, Converter={StaticResource PlatosMontoConverter}}" FontSize="18" /> 
+            </StackLayout>
+            
+
+            <Button Text="Pagar" BackgroundColor="#4CAF50" TextColor="White" FontSize="20" Clicked="redirectPage"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

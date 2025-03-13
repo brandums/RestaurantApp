@@ -1,0 +1,173 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net8.0-maccatalyst
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = RestauranteMap
+build_property.ProjectDir = C:\Users\brran\source\repos\RestauranteMap\RestauranteMap\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/AdminClients.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.AdminClients.xaml
+build_metadata.AdditionalFiles.TargetPath = AdminClients.xaml
+build_metadata.AdditionalFiles.RelativePath = AdminClients.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/Administracion.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.Administracion.xaml
+build_metadata.AdditionalFiles.TargetPath = Administracion.xaml
+build_metadata.AdditionalFiles.RelativePath = Administracion.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/AdminPedidos.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.AdminPedidos.xaml
+build_metadata.AdditionalFiles.TargetPath = AdminPedidos.xaml
+build_metadata.AdditionalFiles.RelativePath = AdminPedidos.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/AdminUsers.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.AdminUsers.xaml
+build_metadata.AdditionalFiles.TargetPath = AdminUsers.xaml
+build_metadata.AdditionalFiles.RelativePath = AdminUsers.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/Almacenes.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.Almacenes.xaml
+build_metadata.AdditionalFiles.TargetPath = Almacenes.xaml
+build_metadata.AdditionalFiles.RelativePath = Almacenes.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/Categorias.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.Categorias.xaml
+build_metadata.AdditionalFiles.TargetPath = Categorias.xaml
+build_metadata.AdditionalFiles.RelativePath = Categorias.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/Cocina.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.Cocina.xaml
+build_metadata.AdditionalFiles.TargetPath = Cocina.xaml
+build_metadata.AdditionalFiles.RelativePath = Cocina.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/CocinaAdmin.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.CocinaAdmin.xaml
+build_metadata.AdditionalFiles.TargetPath = CocinaAdmin.xaml
+build_metadata.AdditionalFiles.RelativePath = CocinaAdmin.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/DetallesPedidoPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.DetallesPedidoPage.xaml
+build_metadata.AdditionalFiles.TargetPath = DetallesPedidoPage.xaml
+build_metadata.AdditionalFiles.RelativePath = DetallesPedidoPage.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/Egresos.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.Egresos.xaml
+build_metadata.AdditionalFiles.TargetPath = Egresos.xaml
+build_metadata.AdditionalFiles.RelativePath = Egresos.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/formularioPlato.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.formularioPlato.xaml
+build_metadata.AdditionalFiles.TargetPath = formularioPlato.xaml
+build_metadata.AdditionalFiles.RelativePath = formularioPlato.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/Ingresos.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.Ingresos.xaml
+build_metadata.AdditionalFiles.TargetPath = Ingresos.xaml
+build_metadata.AdditionalFiles.RelativePath = Ingresos.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/Login.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.Login.xaml
+build_metadata.AdditionalFiles.TargetPath = Login.xaml
+build_metadata.AdditionalFiles.RelativePath = Login.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/Map.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.Map.xaml
+build_metadata.AdditionalFiles.TargetPath = Map.xaml
+build_metadata.AdditionalFiles.RelativePath = Map.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/MapPopup.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.MapPopup.xaml
+build_metadata.AdditionalFiles.TargetPath = MapPopup.xaml
+build_metadata.AdditionalFiles.RelativePath = MapPopup.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/MetodoPago.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.MetodoPago.xaml
+build_metadata.AdditionalFiles.TargetPath = MetodoPago.xaml
+build_metadata.AdditionalFiles.RelativePath = MetodoPago.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/Pedidos.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.Pedidos.xaml
+build_metadata.AdditionalFiles.TargetPath = Pedidos.xaml
+build_metadata.AdditionalFiles.RelativePath = Pedidos.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/PedidosMesa.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.PedidosMesa.xaml
+build_metadata.AdditionalFiles.TargetPath = PedidosMesa.xaml
+build_metadata.AdditionalFiles.RelativePath = PedidosMesa.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/ProductView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.ProductView.xaml
+build_metadata.AdditionalFiles.TargetPath = ProductView.xaml
+build_metadata.AdditionalFiles.RelativePath = ProductView.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/Promociones.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.Promociones.xaml
+build_metadata.AdditionalFiles.TargetPath = Promociones.xaml
+build_metadata.AdditionalFiles.RelativePath = Promociones.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/Reservas.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.Reservas.xaml
+build_metadata.AdditionalFiles.TargetPath = Reservas.xaml
+build_metadata.AdditionalFiles.RelativePath = Reservas.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[C:/Users/brran/source/repos/RestauranteMap/RestauranteMap/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RestauranteMap.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml

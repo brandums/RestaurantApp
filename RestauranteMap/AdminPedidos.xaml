@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RestauranteMap.AdminPedidos">
+
+    <Grid RowDefinitions="5*,5*">
+        <RefreshView Grid.Row="0"
+         IsRefreshing="{Binding IsRefreshing}"
+         Command="{Binding RefreshCommand}">
+            <CollectionView x:Name="OrdersList"
+                        ItemsSource="{Binding Orders}"
+                        SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="10,10,10,0" Padding="3" BorderColor="Transparent" CornerRadius="12" BackgroundColor="{Binding ., Converter={StaticResource TimeToColorConverter}}">
+                            <Frame Padding="10" CornerRadius="10" BackgroundColor="LightGray">
+                                <Grid RowDefinitions="Auto, Auto, Auto"
+                                  ColumnDefinitions="*, Auto">
+
+                                    <Label Text="{Binding Name}" 
+                                       IsVisible="{Binding NumeroMesa, Converter={StaticResource NullOrZeroToInvisibleConverter}}"
+                                       FontAttributes="Bold" 
+                                       FontSize="18" 
+                                       Grid.Row="0" 
+                                       Grid.Column="0" />
+
+                                    <Label Text="{Binding NameMesa}" 
+                                       IsVisible="{Binding NumeroMesa, Converter={StaticResource NonZeroToVisibleConverter}}"
+                                       FontAttributes="Bold" 
+                                       FontSize="18" 
+                                       Grid.Row="0" 
+                                       Grid.Column="0" />
+
+                                    <StackLayout Orientation="Horizontal" 
+                                             Spacing="10" 
+                                             Grid.Row="1" 
+                                             Grid.Column="0">
+                                        <Label Text="Telf:" IsVisible="{Binding NumeroMesa, Converter={StaticResource NullOrZeroToInvisibleConverter}}"/>
+                                        <Label Text="Mesero:" IsVisible="{Binding NumeroMesa, Converter={StaticResource NonZeroToVisibleConverter}}"/>
+                                        <Label Text="{Binding Phone}" IsVisible="{Binding NumeroMesa, Converter={StaticResource NullOrZeroToInvisibleConverter}}"/>
+                                        <Label Text="{Binding Name}" IsVisible="{Binding NumeroMesa, Converter={StaticResource NonZeroToVisibleConverter}}"/>
+                                    </StackLayout>
+
+                                    <Label Text="{Binding Direccion}"
+                                       IsVisible="{Binding NumeroMesa, Converter={StaticResource NullOrZeroToInvisibleConverter}}"
+                                       FontSize="14" 
+                                       TextColor="Gray" 
+                                       Grid.Row="2" 
+                                       Grid.Column="0" />
+
+                                    <Label Text="{Binding NumeroMesa, StringFormat='Mesa: {0}'}" 
+                                       IsVisible="{Binding NumeroMesa, Converter={StaticResource NonZeroToVisibleConverter}}"
+                                       FontSize="14" 
+                                       TextColor="Gray" 
+                                       Grid.Row="2" 
+                                       Grid.Column="0" />
+
+                                    <Label 
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Text="{Binding Tipo}" 
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="Center"/>
+
+                                    <Frame
+                                        Grid.Row="1" 
+                                        Grid.RowSpan="3" 
+                                        Grid.Column="1" 
+                                        VerticalOptions="Center" 
+                                        HorizontalOptions="End"
+                                        BackgroundColor="Grey">
+
+                                        <Label Text="{Binding Estado}" TextColor="White"/>
+                                    </Frame>
+                                </Grid>
+                            </Frame>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+        <Grid Grid.Row="1" BackgroundColor="Gray" RowDefinitions="auto, auto, *" Padding="10" RowSpacing="10">
+            <Label Grid.Row="0" Text="Mesas:" TextColor="#000" FontSize="22" FontAttributes="Bold" VerticalOptions="Center"/>
+
+            <Grid
+                Grid.Row="1">
+                <Frame
+                    Opacity="0.8"
+                    CornerRadius="12"
+                    BackgroundColor="#434443"
+                    BorderColor="Transparent"
+                    />
+
+                <Grid
+                    VerticalOptions="Start"
+                    HorizontalOptions="FillAndExpand"
+                    Padding="12, 3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image
+                        Source="search.png"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"
+                        WidthRequest="20"
+                        HeightRequest="20"
+                        Margin="0,0,10,0" />
+
+                    <Entry
+                        BackgroundColor="Transparent"
+                        Grid.Column="1"
+                        Placeholder="Buscar cliente"
+                        VerticalOptions="Center"
+                        TextColor="Black"
+                        FontSize="16"
+                        HeightRequest="40"
+                        Margin="0,0,0,0" 
+                        TextChanged="OnSearchTextChanged"/>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="2" x:Name="MesasContainer">
+
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentView>

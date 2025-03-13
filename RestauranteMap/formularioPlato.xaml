@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RestauranteMap.formularioPlato">
+
+    <Grid>
+        <Grid>
+            <StackLayout Padding="15">
+                <Button Text="Agregar Plato" HorizontalOptions="End" Clicked="AbrirForm"></Button>
+
+                <Grid ColumnDefinitions="4*,3*,3*" Margin="0,15">
+                    <Label Grid.Column="0" Text="Nombre" FontAttributes="Bold" FontSize="18"/>
+                    <Label Grid.Column="1" Text="Precio" HorizontalOptions="Center" FontAttributes="Bold" FontSize="18"/>
+                    <Label Grid.Column="2" Text="Opciones" HorizontalOptions="Center" FontAttributes="Bold" FontSize="18"/>
+                </Grid>
+                
+                <CollectionView ItemsSource="{Binding AllFoods}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid Padding="0,10" ColumnDefinitions="4*,3*,3*">
+
+                                    <Label Grid.Column="0" Text="{Binding Nombre}" VerticalOptions="Center" />
+
+                                    <Label Grid.Column="1" Text="{Binding Precio}" VerticalOptions="Center" HorizontalOptions="Center" />
+
+                                    <Grid Grid.Column="2" ColumnDefinitions="*,*" HorizontalOptions="Center" ColumnSpacing="20">
+                                        <Image x:Name="editar" Grid.Column="0" Source="edit.png" WidthRequest="20">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="EditarPlato"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+
+                                        <Image x:Name="eliminar" Grid.Column="1" Source="delete.png" WidthRequest="20">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="EliminarPlato"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </Grid>
+                                </Grid>
+
+                                <Border VerticalOptions="End" HeightRequest="1" Background="Black" Opacity="0.5"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </Grid>
+
+        <Grid x:Name="PopupCreateForm" IsVisible="False">
+            <Grid BackgroundColor="Black" Opacity="0.6">
+
+            </Grid>
+
+            <Grid Padding="10" RowDefinitions="9*,1*" Background="White" Margin="30,50">
+                <ScrollView Grid.Row="0">
+                    <StackLayout>
+                        <Entry x:Name="NombrePlato" Placeholder="Nombre del plato" />
+                        <Entry x:Name="DescripcionPlato" Placeholder="Descripción" />
+
+                        <Grid ColumnDefinitions="6*,4*">
+                            <Picker Grid.Column="0" x:Name="CategoriaPicker" Title="Selecciona una categoría"/>
+                            <Entry Grid.Column="1" x:Name="Precio" Placeholder="Precio" />
+                        </Grid>
+
+                        <Grid ColumnDefinitions="auto,*" VerticalOptions="Center" ColumnSpacing="8">
+                            <Label Grid.Column="0" Text="Cantidad de Imagenes: " VerticalTextAlignment="Center"/>
+                            <Entry Grid.Column="1" x:Name="CantidadImagenesEntry"
+                           Placeholder="Cantidad de imágenes"
+                           Keyboard="Numeric"
+                           TextChanged="OnCantidadImagenesChanged"/>
+                        </Grid>
+
+                        <StackLayout x:Name="ImagenesContainer" Spacing="5"/>
+
+                        <Grid ColumnDefinitions="auto,*" VerticalOptions="Center" ColumnSpacing="8" Margin="0,15,0,0">
+                            <Button Grid.Column="0" Text="Seleccionar Video" Clicked="SeleccionarVideoAsync" Padding="0" HeightRequest="35" WidthRequest="150"/>
+                            <Label Grid.Column="1" x:Name="VideoLabel" Text="No se ha seleccionado ningún video aún" FontSize="14" TextColor="Gray" VerticalTextAlignment="Center"/>
+                        </Grid>
+
+                        <Grid ColumnDefinitions="auto,*" VerticalOptions="Center" ColumnSpacing="8">
+                            <Label Grid.Column="0" Text="Plato Especial: " VerticalTextAlignment="Center"/>
+                            <CheckBox Grid.Column="1" x:Name="PlatoEspecialCheckBox" HorizontalOptions="Start"/>
+                        </Grid>
+
+
+
+
+                        <Entry x:Name="NombreRecetaEntry" Placeholder="Nombre de la receta" />
+
+                        <Grid ColumnDefinitions="auto,*" VerticalOptions="Center" ColumnSpacing="8">
+                            <Label Grid.Column="0" Text="¿Cuántos ingredientes?" VerticalTextAlignment="Center"/>
+                            <Entry Grid.Column="1" x:Name="CantidadIngredientesEntry"
+                                   Placeholder="Número de ingredientes"
+                                   Keyboard="Numeric"
+                                   TextChanged="OnCantidadIngredientesChanged"/>
+                        </Grid>
+
+                        <StackLayout x:Name="IngredientesContainer" Spacing="10"/>
+
+
+                        <Grid Padding="10">
+                            <StackLayout>
+                                <Grid ColumnDefinitions="7*,3*">
+                                    <Picker Grid.Column="0" x:Name="TipoContenidoPicker" Title="Seleccionar tipo de contenido">
+                                        <Picker.Items>
+                                            <x:String>Subtitulo</x:String>
+                                            <x:String>Texto</x:String>
+                                            <x:String>Imagen</x:String>
+                                        </Picker.Items>
+                                    </Picker>
+
+                                    <Button Grid.Column="1" Text="Agregar" Clicked="OnAgregarContenido" Padding="0" HeightRequest="35"/>
+                                </Grid>
+
+                                <StackLayout x:Name="CamposDinamicosContainer" Spacing="10" Margin="0,10,0,0"/>
+                            </StackLayout>
+                        </Grid>
+
+                    </StackLayout>
+                </ScrollView>
+
+                <Grid Grid.Row="1" HorizontalOptions="End" ColumnDefinitions="auto,auto" ColumnSpacing="5">
+                    <Button Grid.Column="1" Text="Cancelar" Padding="30,0" HeightRequest="40" Clicked="CerrarForm"></Button>
+                    <Button Grid.Column="0" x:Name="btnCreate" Text="Crear plato"  Padding="30,0" HeightRequest="40" BackgroundColor="LimeGreen" Clicked="CrearPlato"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentView>

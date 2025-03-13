@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RestauranteMap.Categorias">
+
+    <Grid>
+        <StackLayout Padding="10,15">
+            <Button x:Name="btnCrearCategoria" Text="Agregar Categoria" HorizontalOptions="End" Clicked="AbrirPopup"/>
+
+            <Grid ColumnDefinitions="2.6*,2.6*,2.6*,2.2*" Padding="15,10">
+                <Label Grid.Column="0" Text="Nombre" FontAttributes="Bold" FontSize="16"/>
+                <Label Grid.Column="1" Text="Logo" FontAttributes="Bold" FontSize="16" HorizontalOptions="Center"/>
+                <Label Grid.Column="2" Text="Imagen" FontAttributes="Bold" FontSize="16" HorizontalOptions="Center" />
+                <Label Grid.Column="3" Text="Opciones" FontAttributes="Bold" FontSize="16" HorizontalOptions="Center" />
+            </Grid>
+            <CollectionView ItemsSource="{Binding Categories}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid Padding="15, 5" ColumnDefinitions="2.6*,2.6*,2.6*,2.2*">
+                                <Label Grid.Column="0" Text="{Binding Name}" VerticalOptions="Center" Padding="0"/>
+
+                                <Image Grid.Column="1" Source="{Binding Logo}" WidthRequest="50" HeightRequest="35" Margin="0"/>
+
+                                <Image Grid.Column="2" Source="{Binding Image}" WidthRequest="50" HeightRequest="35" Margin="0"/>
+
+                                <Grid Grid.Column="3" ColumnDefinitions="*,*" HorizontalOptions="Center" ColumnSpacing="20">
+                                    <Image x:Name="editar" Grid.Column="0" Source="edit.png" WidthRequest="20">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="EditarCategoria"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+
+                                    <Image x:Name="eliminar" Grid.Column="1" Source="delete.png" WidthRequest="20">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="EliminarCategoria"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </Grid>
+                            </Grid>
+                            <Border VerticalOptions="End" HeightRequest="1" Background="Black" Opacity="0.6"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+
+        <Grid x:Name="popupCreate" IsVisible="False">
+            <Grid BackgroundColor="Black" Opacity="0.4">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CerrarPopup"/>
+                </Grid.GestureRecognizers>
+            </Grid>
+
+            <Grid Margin="30,50" Padding="25" Background="White" RowDefinitions="8*,2*" HeightRequest="300">
+                <StackLayout Grid.Row="0" Spacing="10">
+                    <Entry x:Name="Nombre" Placeholder="Nombre"/>
+
+                    <Grid ColumnDefinitions="50,*" ColumnSpacing="10">
+                        <Button Grid.Column="1" Text="Seleccionar Logo" Clicked="SeleccionarLogo"/>
+                        <Image Grid.Column="0" x:Name="LogoPreview" HeightRequest="50" WidthRequest="50" Background="Gray" Aspect="AspectFill"/>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="50,*" ColumnSpacing="10">
+                        <Button Grid.Column="1" Text="Seleccionar Imagen" Clicked="SeleccionarImagen"/>
+                        <Image Grid.Column="0" x:Name="ImagePreview" HeightRequest="50" WidthRequest="50" Background="Gray" Aspect="AspectFill"/>
+                    </Grid>
+                </StackLayout>
+
+                <Grid Grid.Row="1" ColumnDefinitions="auto,auto" HorizontalOptions="End" ColumnSpacing="10">
+                    <Button Grid.Column="0" x:Name="buttonCreate" Text="Crear Categoria" HeightRequest="40" Clicked="CrearCategoria"/>
+                    <Button Grid.Column="1" Text="Cancelar" HeightRequest="40" Clicked="CerrarForm"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</ContentView>

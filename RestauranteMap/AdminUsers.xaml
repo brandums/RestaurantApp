@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RestauranteMap.AdminUsers">
+
+    <Grid RowDefinitions="0.5*,9.5*">
+        <Grid Grid.Row="0" ColumnDefinitions="auto,auto,auto" ColumnSpacing="25" VerticalOptions="Center" HorizontalOptions="Center">
+            <Label x:Name="LabelAsistencia" Grid.Column="0" Text="Asistencia" FontAttributes="Bold" FontSize="16" TextColor="Blue">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnLabelTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label x:Name="LabelRendimiento" Grid.Column="1" Text="Rendimiento" FontAttributes="Bold" FontSize="16" TextColor="Black">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnLabelTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label x:Name="LabelEditar" Grid.Column="2" Text="Editar" FontAttributes="Bold" FontSize="16" TextColor="Black">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnLabelTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <StackLayout Padding="10">
+                <Grid>
+                    <Frame
+                        Opacity="0.8"
+                        CornerRadius="12"
+                        BackgroundColor="#434443"
+                        BorderColor="Transparent"/>
+
+                    <Grid
+                        VerticalOptions="Start"
+                        HorizontalOptions="FillAndExpand"
+                        Padding="12, 3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image
+                            Source="search.png"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start"
+                            WidthRequest="20"
+                            HeightRequest="20"
+                            Margin="0,0,10,0" />
+
+                        <Entry
+                            BackgroundColor="Transparent"
+                            Grid.Column="1"
+                            Placeholder="Buscar usuario"
+                            VerticalOptions="Center"
+                            TextColor="Black"
+                            FontSize="16"
+                            HeightRequest="40"
+                            Margin="0,0,0,0"
+                            Text="{Binding SearchText}" />
+                    </Grid>
+                </Grid>
+
+                <CollectionView x:Name="Asistencia" IsVisible="True" ItemsSource="{Binding Users}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="7*,3*">
+                                <StackLayout Grid.Column="0" Padding="10">
+                                    <Label Text="{Binding Name, StringFormat='Nombre: {0}'}" FontSize="20" />
+                                    <Label Text="{Binding Email, StringFormat='Email: {0}'}" FontSize="16" />
+                                    <Label Text="{Binding Rol, StringFormat='Rol: {0}'}" FontSize="16" />
+                                </StackLayout>
+
+                                <Grid Grid.Column="1" ColumnDefinitions="*,*" RowDefinitions="0.5*,*">
+                                    <Label Grid.Column="0" Grid.Row="0" VerticalTextAlignment="End" Text="Entrada"/>
+                                    <Label Grid.Column="1" Grid.Row="0" VerticalTextAlignment="End" Text="Salida"/>
+
+                                    <Grid Grid.Column="0" Grid.Row="1">
+                                        <CheckBox VerticalOptions="Start" HorizontalOptions="Start"/>
+                                    </Grid>
+
+                                    <Grid Grid.Column="1" Grid.Row="1">
+                                        <CheckBox VerticalOptions="Start" HorizontalOptions="Start"/>
+                                    </Grid>
+                                </Grid>
+
+                                <BoxView Grid.ColumnSpan="2" VerticalOptions="End" HeightRequest="1" Color="Black" Margin="0,5,0,0"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <CollectionView x:Name="Rendimiento" IsVisible="False" ItemsSource="{Binding Users}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="8*,2*">
+                                <StackLayout Grid.Column="0" Padding="10">
+                                    <Label Text="{Binding Name, StringFormat='Nombre: {0}'}" FontSize="20" />
+                                    <Label Text="{Binding Email, StringFormat='Email: {0}'}" FontSize="16" />
+                                    <Label Text="{Binding Rol, StringFormat='Rol: {0}'}" FontSize="16" />
+                                </StackLayout>
+
+                                <Grid Grid.Column="1" RowDefinitions="0.8*,*">
+                                    <Label Grid.Row="0" VerticalTextAlignment="End" Text="Rendimiento"/>
+                                    <Label Grid.Row="1" Text="{Binding RendimientoCount}" HorizontalTextAlignment="Center" FontSize="20"/>
+                                </Grid>
+
+                                <BoxView Grid.ColumnSpan="2" VerticalOptions="End" HeightRequest="1" Color="Black" Margin="0,5,0,0"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <CollectionView x:Name="Editar" IsVisible="False" ItemsSource="{Binding Users}" SelectionMode="Single"
+                                SelectedItem="{Binding SelectedUser}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding Name, StringFormat='Nombre: {0}'}" FontSize="20" />
+                                <Label Text="{Binding Email, StringFormat='Email: {0}'}" FontSize="16" />
+                                <Label Text="{Binding Rol, StringFormat='Rol: {0}'}" FontSize="16" />
+                                <BoxView VerticalOptions="End" HeightRequest="1" Color="Black" Margin="0,5,0,0"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+
+            <Grid IsVisible="{Binding IsPopupVisible}">
+                <BoxView BackgroundColor="Black" Opacity="0.5" 
+                         VerticalOptions="FillAndExpand" 
+                         HorizontalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ClosePopupCommand}" />
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+
+                <Grid BackgroundColor="White" Padding="20"
+                      VerticalOptions="Center" HorizontalOptions="Center"
+                      WidthRequest="300">   
+                    <StackLayout>
+                        <Label Text="Editar Usuario" FontSize="24" FontAttributes="Bold" />
+
+                        <Grid ColumnDefinitions="auto,*" ColumnSpacing="8">
+                            <Label Grid.Column="0" Text="Nombre:" VerticalOptions="Center"/>
+                            <Entry Grid.Column="1" Text="{Binding SelectedUser.Name}" Placeholder="Nombre" />
+                        </Grid>
+
+                        <Grid ColumnDefinitions="4.5*,5.5*">
+                            <Grid Grid.Column="0" ColumnDefinitions="auto,*" ColumnSpacing="8">
+                                <Label Grid.Column="0" Text="CI:" VerticalOptions="Center"/>
+                                <Entry Grid.Column="1" Text="{Binding SelectedUser.CI}" Placeholder="CI" />
+                            </Grid>
+
+                            <Grid Grid.Column="1" ColumnDefinitions="auto,*" ColumnSpacing="8">
+                                <Label Grid.Column="0" Text="Ciudad:" VerticalOptions="Center"/>
+                                <Entry Grid.Column="1" Text="{Binding SelectedUser.City}" Placeholder="Ciudad" />
+                            </Grid>
+                        </Grid>
+
+                        <Grid ColumnDefinitions="auto,*" ColumnSpacing="8">
+                            <Label Grid.Column="0" Text="Email:" VerticalOptions="Center"/>
+                            <Entry Grid.Column="1" Text="{Binding SelectedUser.Email}" Placeholder="Correo Electrónico" />
+                        </Grid>
+
+                        <Grid ColumnDefinitions="auto,*" ColumnSpacing="8">
+                            <Label Grid.Column="0" Text="Telefono:" VerticalOptions="Center"/>
+                            <Entry Grid.Column="1" Text="{Binding SelectedUser.Phone}" Placeholder="Teléfono" />
+                        </Grid>
+
+                        <Grid ColumnDefinitions="auto,*" ColumnSpacing="8">
+                            <Label Grid.Column="0" Text="Direccion:" VerticalOptions="Center"/>
+                            <Entry Grid.Column="1" Text="{Binding SelectedUser.Direccion}" Placeholder="Dirección" />
+                        </Grid>
+
+                        <Grid ColumnDefinitions="auto, *" ColumnSpacing="8">
+                            <Label Grid.Column="0" Text="Rol:" VerticalOptions="Center"/>
+                            <Picker Grid.Column="1" Title="Rol" ItemsSource="{Binding Roles}" SelectedItem="{Binding SelectedUser.Rol}" />
+                        </Grid>
+
+                        <Label Text="Carnet de Identidad:" Margin="0,8,0,0"/>
+                        <Grid ColumnDefinitions="auto,*" ColumnSpacing="8">
+                            <Button Grid.Column="1" Text="Seleccionar Imagen" 
+                                    Command="{Binding SelectImageCommand}" CommandParameter="TempImageCarnet" />
+                            <Image Grid.Column="0" Source="{Binding TempImageCarnet}" Aspect="AspectFill"
+                                   HeightRequest="50" WidthRequest="50" Background="Gray" />
+                        </Grid>
+
+                        <Label Text="Factura de Servicio:"  Margin="0,8,0,0"/>
+                        <Grid ColumnDefinitions="auto,*" ColumnSpacing="8">
+                            <Button Grid.Column="1" Text="Seleccionar Imagen" 
+                                    Command="{Binding SelectImageCommand}" CommandParameter="TempImageFactura" />
+                            <Image Grid.Column="0" Source="{Binding TempImageFactura}" Aspect="AspectFill" 
+                                    HeightRequest="50" WidthRequest="50" Background="Gray" />
+                        </Grid>
+
+                        <Label Text="Carnet Sanitario:"  Margin="0,8,0,0"/>
+                        <Grid ColumnDefinitions="auto,*" ColumnSpacing="8">
+                            <Button Grid.Column="1" Text="Seleccionar Imagen" 
+                                    Command="{Binding SelectImageCommand}" CommandParameter="TempImageSanitario" />
+                            <Image Grid.Column="0" Source="{Binding TempImageSanitario}" Aspect="AspectFill" 
+                                    HeightRequest="50" WidthRequest="50" Background="Gray" />
+                        </Grid>
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="8" Margin="0,8,0,0" Padding="0">
+                            <Button Grid.Column="1" Text="Guardar" Command="{Binding SaveUserCommand}" />
+                            <Button Grid.Column="0" Text="Cancelar" Command="{Binding ClosePopupCommand}" />
+                        </Grid>
+                    </StackLayout>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentView>

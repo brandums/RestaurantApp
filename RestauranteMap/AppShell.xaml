@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="RestauranteMap.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:RestauranteMap"
+    Shell.FlyoutBehavior="Disabled"
+    Title="RestauranteMap"
+    Shell.NavBarIsVisible="False">
+
+    <ShellContent Title="Main Page" ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" />
+    <ShellContent Title="Mapa" ContentTemplate="{DataTemplate local:Map}" Route="Map" />
+    <ShellContent Title="Login" ContentTemplate="{DataTemplate local:Login}" Route="Login" />
+    <ShellContent Title="ProductView" ContentTemplate="{DataTemplate local:ProductView}" Route="ProductView"/>
+    <ShellContent Title="Reservas" ContentTemplate="{DataTemplate local:Reservas}" Route="Reservas"/>
+    <ShellContent Title="Pedidos" ContentTemplate="{DataTemplate local:Pedidos}" Route="Pedidos"/>
+    <ShellContent Title="Cocina" ContentTemplate="{DataTemplate local:Cocina}" Route="Cocina"/>
+    <ShellContent Title="PedidosMesa" ContentTemplate="{DataTemplate local:PedidosMesa}" Route="PedidosMesa"/>
+    <ShellContent Title="Administracion" ContentTemplate="{DataTemplate local:Administracion}" Route="Administracion"/>
+    <ShellContent Title="AdminPedidos" ContentTemplate="{DataTemplate local:AdminPedidos}" Route="AdminPedidos"/>
+    <ShellContent Title="DetallesPedidoPage" ContentTemplate="{DataTemplate local:DetallesPedidoPage}" Route="DetallesPedidoPage"/>
+    <ShellContent Title="MetodoPago" ContentTemplate="{DataTemplate local:MetodoPago}" Route="MetodoPago"/>
+</Shell>

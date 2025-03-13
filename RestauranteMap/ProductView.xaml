@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RestauranteMap.ProductView"
+             Title="ProductView">
+
+    <Grid
+        RowDefinitions="*,50">
+
+        <ScrollView Grid.Row="0">
+            <Grid RowDefinitions="420, auto">
+                <CarouselView
+                    x:Name="carouselView"
+                    Grid.Row="0"
+                    Loop="True"
+                    ItemsSource="{Binding Images}">
+                    <CarouselView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" />
+                    </CarouselView.ItemsLayout>
+
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Image Source="{Binding}" Aspect="AspectFill"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+
+                <Grid
+                    Grid.Row="1"
+                    RowDefinitions="6*,4*">
+                    <StackLayout
+                        Grid.Row="0"
+                        Padding="10"
+                        Spacing="6"
+                        BackgroundColor="White">
+                        <Grid>
+                            <Label Text="{Binding Nombre}" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Start"/>
+                            <Grid
+                                ColumnDefinitions="auto,auto" HorizontalOptions="End">
+                                <Label Grid.Column="0" Text="{Binding Precio}" FontSize="24" FontAttributes="Bold" TextColor="Gray" />
+                                <Label Grid.Column="1" Text=" Bs." FontSize="24" FontAttributes="Bold" TextColor="Gray"/>
+                            </Grid>
+
+                        </Grid>
+
+                        <Grid>
+                            <Label Text="{Binding Categoria}" FontSize="16" TextColor="Gray" HorizontalTextAlignment="Start"/>
+                            <Grid
+                                ColumnDefinitions="auto,auto,auto" HorizontalOptions="End">
+                                <Label Grid.Column="0" Text="con membrecía" FontSize="16" TextColor="Gray" />
+                                <Label Grid.Column="1" Text=" 90" FontSize="16" FontAttributes="Bold" TextColor="Gray" />
+                                <Label Grid.Column="2" Text=" Bs." FontSize="16" FontAttributes="Bold" TextColor="Gray"/>
+                            </Grid>
+                        </Grid>
+
+                        <Label Text="{Binding Descripcion}" FontSize="15" />
+
+                    </StackLayout>
+
+                    <Grid x:Name="cantidadContainer" Grid.Row="1" RowDefinitions="auto,auto"  Margin="10,0,10,0">
+                        <HorizontalStackLayout Grid.Row="0" x:Name="CantidadContent" HorizontalOptions="End" Spacing="8" >
+                            <Label Text="Cantidad: " FontSize="16" VerticalOptions="Center"/>
+                            <Grid Grid.Column="1" HorizontalOptions="Center" Padding="0,15" ColumnDefinitions="*, *, *" ColumnSpacing="10">
+                                <Button Text="-" Padding="0" Clicked="DecrementQuantity" Grid.Column="0" HeightRequest="30"/>
+
+                                <Label Text="{Binding Quantity}" HorizontalTextAlignment="Center" Grid.Column="1" FontSize="17" TextColor="Black" VerticalOptions="Center"/>
+
+                                <Button Text="+" Padding="0" Clicked="IncrementQuantity" Grid.Column="2" HeightRequest="30"/>
+                            </Grid>
+                        </HorizontalStackLayout>
+
+                        <Entry Grid.Row="1" Placeholder="Dejar comentario para el pedido" Text="{Binding Comentario, Mode=TwoWay}">
+                            <Entry.Triggers>
+                                <DataTrigger TargetType="Entry" Binding="{Binding Quantity}" Value="0">
+                                    <Setter Property="IsVisible" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Entry" Binding="{Binding Quantity}" Value="1">
+                                    <Setter Property="IsVisible" Value="True" />
+                                </DataTrigger>
+                            </Entry.Triggers>
+                        </Entry>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </ScrollView>
+
+        <Grid
+            Grid.Row="1"
+            ColumnDefinitions="3.3*,3.3*,3.3*"
+            ColumnSpacing="8"
+            Margin="10,0,10,10">
+            <Button
+                Grid.Column="0"
+                Text="Envio"/>
+
+            <Button
+                Grid.Column="1"
+                Text="En restaurante"/>
+
+            <Button
+                Grid.Column="2"
+                Padding="0"
+                Text="Comprar membrecía"/>
+        </Grid>
+    </Grid>
+</ContentPage>
